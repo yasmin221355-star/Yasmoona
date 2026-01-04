@@ -1,104 +1,165 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Yasmoona 💖</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى أحمودتي ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
-            height: 100vh;
             margin: 0;
-
+            padding: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-
-            font-family: Arial, sans-serif;
-            position: relative;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            font-family: 'Cairo', sans-serif;
+            overflow: hidden;
+            color: #5d4037;
+            cursor: pointer;
         }
 
-        /* عنوان الموقع */
-        h1 {
-            font-size: 64px;
-            margin-bottom: 30px;
-
-            background: linear-gradient(to bottom, #ff4e8a, #ff9a9e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* حاوية القلوب */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        /* الصندوق الرئيسي */
-        .box {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 40px 50px;
-            border-radius: 25px;
+        /* تصميم الكارت الرئيسي */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 25px;
+            border-radius: 40px;
+            box-shadow: 0 25px 60px rgba(216, 27, 96, 0.2);
             text-align: center;
-            font-size: 22px;
-            color: #444;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
+            max-width: 450px;
+            width: 85%;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            animation: bounceIn 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            border: 2px solid #ffffff;
         }
 
-        .box span {
-            color: #ff4e8a;
+        h1 {
+            color: #d81b60;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+            animation: heartbeat 1.5s infinite;
+        }
+
+        p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 15px 0;
+        }
+
+        .highlight {
+            color: #e91e63;
+            font-weight: 700;
+            background: rgba(233, 30, 99, 0.1);
+            padding: 0 8px;
+            border-radius: 10px;
+        }
+
+        .special-note {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 2px dashed #f48fb1;
+            font-size: 0.95rem;
+            color: #ad1457;
+            line-height: 1.6;
             font-weight: bold;
         }
 
-        /* قلوب بسيطة */
-        .hearts {
-            margin-top: 20px;
-            font-size: 24px;
+        /* أنيميشن نبض القلب للعنوان */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            10% { transform: scale(1.1); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
-        /* الملاحظة الجانبية */
-        .note {
+        /* أنيميشن ظهور الكارت */
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        /* أنيميشن القلوب الطائرة */
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg) scale(0); opacity: 0; }
+            20% { opacity: 0.8; transform: scale(1.2); }
+            100% { transform: translateY(-110vh) rotate(360deg) scale(1); opacity: 0; }
+        }
+
+        .floating-heart {
             position: absolute;
-            right: 20px;
-            bottom: 20px;
-
-            background-color: rgba(255, 255, 255, 0.85);
-            padding: 15px 20px;
-            border-radius: 15px;
-            width: 260px;
-
-            font-size: 14px;
-            color: #555;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .note strong {
-            color: #ff4e8a;
+            pointer-events: none;
+            animation: floatUp 5s linear forwards;
+            filter: drop-shadow(0 0 5px rgba(255,105,180,0.5));
         }
     </style>
 </head>
+<body onclick="spawnHeart(event)">
 
-<body>
+    <div class="hearts-container" id="heart-box"></div>
 
-    <h1>Yasmoona</h1>
-
-    <div class="box">
-        افتكر إن <span>ياسمينا</span> بتحبك ❤️  
-        <br>
-        وفخورة بيك دايماً يا <span>أحمد</span>  
-        <br><br>
-        إنت اختيارها كل مرة،  
-        ومكانك ثابت في قلبها 💕
+    <div class="card">
+        <h1>Yasmoona ❤️</h1>
         
-        <div class="hearts">
-            💖 💗 💕
+        <p>افتكر دايماً إن <span class="highlight">ياسمينا</span> بتحبك 🥰</p>
+        <p>وفخورة بيك إلى اللانهائية وما بعدها 🚀✨</p>
+        <p>وممتنة جداً لوجودك في حياتي يا أغلى حد.. 🌸</p>
+        <p>عايزاك تكون كويس ومبسوط علطول يا <span class="highlight">أحمودتي</span> ❤️❤️❤️❤️❤️❤️❤️</p>
+
+        <div class="special-note">  دي كانت أول تجربة ليا في تصميم المواقع 💻، وقررت من أول لحظة إنها تكون ليك إنت مخصوص.. اتعملت بكل حب عشانك يا لولو. 🎀
         </div>
     </div>
 
-    <div class="note">
-        <strong>ملحوظة:</strong><br>
-        دي أول مرة أجرب أعمل موقع 🌱  
-        واخترت يكون ليك إنت  
-        <strong>يا أحمودتي</strong> ❤️  
-        عشان تستاهل.
-    </div>
+    <script>
+        const heartIcons = ['❤️', '💖', '💕', '💗', '✨', '🌸', '🥰'];
 
+        function spawnHeart(e) {
+            const box = document.getElementById('heart-box');
+            const heart = document.createElement('div');
+            
+            // اختيار إيموشن عشوائي من القائمة
+            heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            heart.className = 'floating-heart';
+            
+            // تحديد مكان الظهور (سواء بالضغط أو تلقائي)
+            const x = e ? e.clientX : Math.random() * window.innerWidth;
+            const y = e ? e.clientY : window.innerHeight + 50;
+            
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            
+            // أحجام وسرعات عشوائية
+            const size = (Math.random() * 20 + 15) + 'px';
+            heart.style.fontSize = size;
+            
+            const duration = (Math.random() * 3 + 3) + 's';
+            heart.style.animationDuration = duration;
+
+            box.appendChild(heart);
+            
+            // حذف العنصر بعد انتهاء الأنيميشن
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        // إطلاق قلوب تلقائية باستمرار
+        setInterval(() => spawnHeart(null), 600);
+    </script>
 </body>
 </html>
-
